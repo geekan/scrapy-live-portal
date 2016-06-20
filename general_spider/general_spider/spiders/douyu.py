@@ -53,22 +53,15 @@ class Config:
         item['audience_count'] = audience_count
 
     @staticmethod
+    def update_composed_pk(item):
+        # audience_count = [Config.deal_human_readable_numbers(i) for i in item['audience_count']]
+        item['platform_anchor'] = [item['platform'][0] + '+' + item['anchor'][0]]
+
+    @staticmethod
     def preprocess_item(list_item):
         oi = OrderedDict(list_item)
 
         process_items_from_list(oi, Config.update_audience_count)
+        process_items_from_list(oi, Config.update_composed_pk)
 
-        # for item in items:
-            # audience_count = Config.deal_human_readable_numbers(item['audience_count'])
-            # print(item['url'], item['audience_count'], audience_count)
-            # item['audience_count'] = audience_count
-            # info(item)
-
-        # info('------------------')
-        # info(items)
-        info('------------------')
-        info(oi)
-
-        info('## preprocess_item')
-        # info(len(oi))
         return oi

@@ -1,5 +1,8 @@
 
 from BasicSpiderConfig import ExRule
+from collections import OrderedDict
+from misc.common import *
+from misc.log import *
 
 class Config:
 
@@ -23,3 +26,16 @@ class Config:
     ex_rules = []
     follow = False
 
+    @staticmethod
+    def update_composed_pk(item):
+        # audience_count = [Config.deal_human_readable_numbers(i) for i in item['audience_count']]
+        item['platform_anchor'] = [item['platform'][0] + '+' + item['anchor'][0]]
+
+    @staticmethod
+    def preprocess_item(list_item):
+        oi = OrderedDict(list_item)
+
+        # process_items_from_list(oi, Config.update_audience_count)
+        process_items_from_list(oi, Config.update_composed_pk)
+
+        return oi

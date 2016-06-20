@@ -27,7 +27,7 @@ def process_items_from_list(list_item, func):
         for d in v:
             # print type(d), d
             # oi = d.items()
-            info(d)
+            # info(d)
             func(d)
             # info(oi)
             # li = {k1: '|'.join(v1) for k1, v1 in oi}

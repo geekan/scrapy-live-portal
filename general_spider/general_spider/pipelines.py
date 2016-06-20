@@ -74,7 +74,22 @@ class RedisPipeline(object):
     def close_spider(self, spider):
         return
 
+'''
+drop table live_portal_room;
+create table live_portal_room( \
+    platform_anchor varchar(255) NOT NULL PRIMARY KEY, \
+    anchor varchar(128) NOT NULL, \
+    tag varchar(32), \
+    room_name varchar(255), \
+    url varchar(255), \
+    audience_count bigint, \
+    platform varchar(64), \
+    platform_prefix_url varchar(128), \
+    modification_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP \
+);
 
+select * from live_portal_room order by audience_count asc;
+'''
 class MySQLWithEncodingPipeline(object):
 
     def __init__(self):
@@ -89,15 +104,15 @@ class MySQLWithEncodingPipeline(object):
         items = extract_items_from_list(oi)
 
         try:
-            cols_to_update = ['tag', 'room_name', 'url', 'audience_count', 'platform', 'platform_prefix_url']
-            cols = ['anchor'] + cols_to_update
+            cols_to_update = ['anchor', 'tag', 'room_name', 'url', 'audience_count', 'platform', 'platform_prefix_url']
+            cols = ['platform_anchor'] + cols_to_update
             sql_values = ','.join([
                                     '(' + ','.join(['\''+item[i]+'\'' for i in cols]) + ')'
                                     for item in items
                                 ])
 
             sql_update = ','.join([col + '=VALUES(' + col + ')' for col in cols_to_update])
-            sql = """INSERT INTO live_rooms (%s) VALUES %s""" % (','.join(cols), sql_values) + \
+            sql = """INSERT INTO live_portal_room (%s) VALUES %s""" % (','.join(cols), sql_values) + \
                   ''' ON DUPLICATE KEY UPDATE %s''' % sql_update
             info('## mysql pipeline 2')
             debug(sql)
