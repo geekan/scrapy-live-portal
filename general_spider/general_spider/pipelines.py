@@ -89,6 +89,7 @@ create table live_portal_room( \
 );
 
 select * from live_portal_room order by audience_count asc;
+select anchor,tag,room_name,url,audience_count,platform from live_portal_room order by audience_count asc;
 '''
 class MySQLWithEncodingPipeline(object):
 
