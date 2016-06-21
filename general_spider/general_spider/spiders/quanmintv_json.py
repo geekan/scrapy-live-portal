@@ -58,7 +58,7 @@ class Config:
             item = {}
             for k, v in Config.list_json_rules.iteritems():
                 item[k] = [i[v]]
-            item[k] = map(lambda x: '/star/' + x, item[k])
+            item['url'] = map(lambda x: '/star/' + x, item['url'])
             item['platform'] = ['quanmintv']
             item['platform_prefix_url'] = ['http://www.quanmin.tv/']
             Config.update_composed_pk(item)
