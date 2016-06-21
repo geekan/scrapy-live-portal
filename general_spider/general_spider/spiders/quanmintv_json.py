@@ -43,10 +43,10 @@ class Config:
         for i in ol:
             item = {}
             for k, v in Config.list_json_rules:
-                item[k] = i[v]
-            item[k] = '/star/' + item[k]
-            item['platform'] = 'quanmintv'
-            item['platform_prefix_url'] = 'http://www.quanmin.tv/'
+                item[k] = [i[v]]
+            item[k] = map(lambda x: '/star/' + x, item[k])
+            item['platform'] = ['quanmintv']
+            item['platform_prefix_url'] = ['http://www.quanmin.tv/']
             process_items_from_list(i, Config.update_composed_pk)
 
             items.append(item)
