@@ -103,22 +103,13 @@ class general_json_spiderSpider(CommonSpider):
         info('list_css_rules:')
         info(list_css_rules)
         x = self.parse_json(response)
+        y = None
 
-        # info(x)
-        preprocess_json_items = getattr(self.conf, "preprocess_item", None)
+        preprocess_json_items = getattr(self.conf, "preprocess_json_items", None)
         if callable(preprocess_json_items):
-            preprocess_json_items(x)
+            y = preprocess_json_items(x)
 
-        # preprocess_item = getattr(self.conf, "preprocess_item", None)
-        # if callable(preprocess_item):
-        #     for item in x:
-        #         preprocess_item(item)
-
-        # x = self.parse_with_rules(response, self.content_css_rules, dict)
-        # print(json.dumps(x, ensure_ascii=False, indent=2))
-        # pp.pprint(x)
-        # return self.parse_with_rules(response, self.css_rules, general_spiderItem)
-        return x
+        return y
 
     def parse_start_url(self, response):
         if type(self.list_css_rules) != dict:
