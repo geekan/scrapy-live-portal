@@ -14,7 +14,7 @@ class Config:
     list_json_rules = {
         'room_name': 'title',
         'anchor': 'nick',
-        'audience_count': '.numbers::text',
+        'audience_count': 'view',
         'tag': 'category_name',
         'url': 'uid', # use star/<uid>
         # 'platform': ['quanmintv'],
@@ -25,30 +25,44 @@ class Config:
 
     name='quanmintv'
     allowed_domains=['quanmin.tv']
-    start_urls=['http://www.quanmin.tv/game/all']
+    start_urls=['http://www.quanmin.tv/json/play/list.json']
     ex_rules = []
     follow = False
 
     @staticmethod
     def update_composed_pk(item):
         # audience_count = [Config.deal_human_readable_numbers(i) for i in item['audience_count']]
+        print(item)
         item['platform_anchor'] = [item['platform'][0] + '+' + item['anchor'][0]]
+
+    # @staticmethod
+    # def preprocess_json_item(ol):
+    #     # process_items_from_list(oi, Config.update_audience_count)
+    #     for i in ol:
+    #         item = {}
+    #         for k, v in Config.list_json_rules:
+    #             item[k] = [i[v]]
+    #         item[k] = map(lambda x: '/star/' + x, item[k])
+    #         item['platform'] = ['quanmintv']
+    #         item['platform_prefix_url'] = ['http://www.quanmin.tv/']
+    #         process_items_from_list(i, Config.update_composed_pk)
 
     @staticmethod
     def preprocess_json_items(list_item):
-        ol = OrderedDict(list_item['data'])
+        # import pdb; pdb.set_trace()
+        ol = list_item['data']
 
         items = []
         # process_items_from_list(oi, Config.update_audience_count)
         for i in ol:
             item = {}
-            for k, v in Config.list_json_rules:
+            for k, v in Config.list_json_rules.iteritems():
                 item[k] = [i[v]]
             item[k] = map(lambda x: '/star/' + x, item[k])
             item['platform'] = ['quanmintv']
             item['platform_prefix_url'] = ['http://www.quanmin.tv/']
-            process_items_from_list(i, Config.update_composed_pk)
+            Config.update_composed_pk(item)
 
             items.append(item)
 
-        return items
+        return {'items': items}

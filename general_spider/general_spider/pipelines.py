@@ -120,7 +120,7 @@ class MySQLWithEncodingPipeline(object):
 
             # (author, tag, room_name, url, people_count)
             r = self.cursor.execute(sql)
-            info('sql execute result: ' + r)
+            info('sql execute result: ' + str(r))
             # item['author'].encode('utf-8'),
             # item['tag'].encode('utf-8'),
             # item['room_name'].encode('utf-8'),

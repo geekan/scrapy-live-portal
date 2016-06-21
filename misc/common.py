@@ -10,6 +10,7 @@ def extract_items_from_list(list_item):
     for k, v in list_item.items():
         for d in v:
             # print type(d), d
+            # import pdb; pdb.set_trace()
             oi = OrderedDict(d).items()
             # info(oi)
             li = {k1: '|'.join(v1) for k1, v1 in oi}
