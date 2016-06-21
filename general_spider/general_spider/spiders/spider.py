@@ -82,7 +82,6 @@ class general_json_spiderSpider(CommonSpider):
         self.name = conf.name
         self.allowed_domains = conf.allowed_domains
         self.start_urls = conf.start_urls
-        self.list_css_rules = conf.list_css_rules
         self.rules = [Rule(sle(allow=(c.allowed_rule_regex)), callback='parse_1', cb_kwargs=c.paras, follow=conf.follow) for c in conf.ex_rules]
         self.conf = conf
 
@@ -97,11 +96,9 @@ class general_json_spiderSpider(CommonSpider):
 
         return json_resp
 
-    def parse_1(self, response, list_css_rules):
+    def parse_1(self, response):
         info('---------------------')
         info('Parse '+response.url)
-        info('list_css_rules:')
-        info(list_css_rules)
         x = self.parse_json(response)
         y = None
 
@@ -112,7 +109,5 @@ class general_json_spiderSpider(CommonSpider):
         return y
 
     def parse_start_url(self, response):
-        if type(self.list_css_rules) != dict:
-            return
-        return self.parse_1(response, self.list_css_rules)
+        return self.parse_1(response)
 
