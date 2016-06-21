@@ -3,6 +3,7 @@ from BasicSpiderConfig import ExRule
 from collections import OrderedDict
 from misc.common import *
 from misc.log import *
+import urllib
 
 class Config:
 
@@ -13,6 +14,7 @@ class Config:
             'audience_count': '.video-number::text',
             'tag': '.video-cate::text',
             'url': 'a::attr(href)',
+            'video_img': '.video-cover .video-img.video-img-lazy::attr(data-original)',
             'platform': ['pandatv'],
             'platform_prefix_url': ['http://www.panda.tv/'],
         }   
@@ -32,10 +34,17 @@ class Config:
         item['platform_anchor'] = [item['platform'][0] + '+' + item['anchor'][0]]
 
     @staticmethod
+    def download_image(item):
+        urllib.urlretrieve(item['video_img'][0],
+                           './images/' + item['platform'][0] + '+' + item['anchor'][0] + '.' + item['video_img'][0].split('.')[-1])
+
+    @staticmethod
     def preprocess_item(list_item):
         oi = OrderedDict(list_item)
+        info(oi)
 
         # process_items_from_list(oi, Config.update_audience_count)
         process_items_from_list(oi, Config.update_composed_pk)
+        process_items_from_list(oi, Config.download_image)
 
         return oi
