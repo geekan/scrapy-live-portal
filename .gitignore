@@ -2,6 +2,7 @@
 .idea
 .DS_Store
 live_rooms.sql
+data_utf8.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
