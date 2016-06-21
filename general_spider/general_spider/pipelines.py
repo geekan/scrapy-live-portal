@@ -116,10 +116,11 @@ class MySQLWithEncodingPipeline(object):
             sql = """INSERT INTO live_portal_room (%s) VALUES %s""" % (','.join(cols), sql_values) + \
                   ''' ON DUPLICATE KEY UPDATE %s''' % sql_update
             info('## mysql pipeline 2')
-            debug(sql)
+            info(sql)
 
             # (author, tag, room_name, url, people_count)
-            self.cursor.execute(sql)
+            r = self.cursor.execute(sql)
+            info('sql execute result: ' + r)
             # item['author'].encode('utf-8'),
             # item['tag'].encode('utf-8'),
             # item['room_name'].encode('utf-8'),

@@ -1,4 +1,9 @@
 
+
+# This script is not in used because quanmin.tv use json & ajax.
+#
+#
+
 from BasicSpiderConfig import ExRule
 from collections import OrderedDict
 from misc.common import *
@@ -22,7 +27,7 @@ class Config:
 
     name='quanmintv'
     allowed_domains=['quanmin.tv']
-    start_urls=['http://www.quanmin.tv/all']
+    start_urls=['http://www.quanmin.tv/game/all']
     ex_rules = []
     follow = False
 
