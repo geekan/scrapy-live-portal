@@ -5,6 +5,8 @@ from misc.common import *
 from misc.log import *
 import urllib
 
+from spider_helper import *
+
 class Config:
 
     list_css_rules = { 
@@ -29,22 +31,12 @@ class Config:
     follow = False
 
     @staticmethod
-    def update_composed_pk(item):
-        # audience_count = [Config.deal_human_readable_numbers(i) for i in item['audience_count']]
-        item['platform_anchor'] = [item['platform'][0] + '+' + item['anchor'][0]]
-
-    @staticmethod
-    def download_image(item):
-        urllib.urlretrieve(item['video_img'][0],
-                           './images/' + item['platform'][0] + '+' + item['anchor'][0] + '.' + item['video_img'][0].split('.')[-1])
-
-    @staticmethod
     def preprocess_item(list_item):
         oi = OrderedDict(list_item)
         info(oi)
 
         # process_items_from_list(oi, Config.update_audience_count)
-        process_items_from_list(oi, Config.update_composed_pk)
-        process_items_from_list(oi, Config.download_image)
+        process_items_from_list(oi, update_composed_pk)
+        process_items_from_list(oi, download_image)
 
         return oi
