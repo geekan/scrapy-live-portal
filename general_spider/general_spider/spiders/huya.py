@@ -17,6 +17,7 @@ class Config:
             'audience_count': '.js-num::text',
             'tag': '.fr a::text',
             'url': 'a.video-info::attr(href)',
+            'video_img': 'img.pic::attr(src)',
             'platform': ['huyatv'],
             'platform_prefix_url': ['http://www.huya.com/'],
         }   

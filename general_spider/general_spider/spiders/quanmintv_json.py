@@ -19,6 +19,7 @@ class Config:
         'audience_count': 'view',
         'tag': 'category_name',
         'url': 'uid', # use star/<uid>
+        'video_img': 'thumb',
         # 'platform': ['quanmintv'],
         # 'platform_prefix_url': ['http://www.quanmin.tv/'],
     }

@@ -18,6 +18,7 @@ class Config:
             'audience_count': '.views span::text',
             'tag': '.game-name::text',
             'url': 'a::attr(href)',
+            'video_img': '.imgBox img::attr(src)',
             'platform': ['zhanqitv'],
             'platform_prefix_url': ['http://www.zhanqi.tv/'],
         }   
