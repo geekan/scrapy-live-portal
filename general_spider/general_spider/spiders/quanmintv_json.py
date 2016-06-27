@@ -43,7 +43,7 @@ class Config:
                 item[k] = [i[v]]
             item['url'] = map(lambda x: '/star/' + x, item['url'])
             item['platform'] = ['quanmintv']
-            item['platform_prefix_url'] = ['http://www.quanmin.tv/']
+            item['platform_prefix_url'] = ['http://www.quanmin.tv']
             update_composed_pk(item)
 
             items.append(item)

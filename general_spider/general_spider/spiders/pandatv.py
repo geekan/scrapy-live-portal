@@ -18,7 +18,7 @@ class Config:
             'url': 'a::attr(href)',
             'video_img': '.video-cover .video-img.video-img-lazy::attr(data-original)',
             'platform': ['pandatv'],
-            'platform_prefix_url': ['http://www.panda.tv/'],
+            'platform_prefix_url': ['http://www.panda.tv'],
         }   
     }
 

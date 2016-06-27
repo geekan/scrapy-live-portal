@@ -19,7 +19,7 @@ class Config:
             'anchor': '.dy-name::text',
             'video_img': '.imgbox img::attr(data-original)',
             'platform': ['douyu'],
-            'platform_prefix_url': ['http://www.douyu.com/'],
+            'platform_prefix_url': ['http://www.douyu.com'],
         }
     }
 

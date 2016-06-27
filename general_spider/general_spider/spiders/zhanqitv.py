@@ -20,7 +20,7 @@ class Config:
             'url': 'a::attr(href)',
             'video_img': '.imgBox img::attr(src)',
             'platform': ['zhanqitv'],
-            'platform_prefix_url': ['http://www.zhanqi.tv/'],
+            'platform_prefix_url': ['http://www.zhanqi.tv'],
         }   
     }
 
