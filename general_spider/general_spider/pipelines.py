@@ -26,7 +26,9 @@ class ImageDownloadPipeline(object):
     # process big item as default.
     def process_item(self, item, spider):
         info('## txt pipeline 1')
+
         oi = OrderedDict(item)
+        process_items_from_list(item, update_item_video_img_local_path)
         process_items_from_list(oi, download_image)
         return oi
 
@@ -122,7 +124,8 @@ class MySQLWithEncodingPipeline(object):
         items = extract_items_from_list(oi)
 
         try:
-            cols_to_update = ['anchor', 'tag', 'room_name', 'url', 'audience_count', 'platform', 'platform_prefix_url']
+            cols_to_update = ['anchor', 'tag', 'room_name', 'url', 'audience_count', 'platform', 'platform_prefix_url',
+                              'video_img_local_path']
             cols = ['platform_anchor'] + cols_to_update
             sql_values = ','.join([
                                     '(' + ','.join(['\''+item[i]+'\'' for i in cols]) + ')'

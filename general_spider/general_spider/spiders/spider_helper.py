@@ -2,16 +2,29 @@
 
 import urllib
 import re
+import hashlib
+m = hashlib.md5()
+
+
+def update_item_video_img_local_path(item, dir='./images/'):
+
+    video_postfix = '.jpg'
+    video_postfix_guess = re.sub('\?.*', '', item['video_img'][0].split('.')[-1])
+    if re.match('\..*', video_postfix_guess):
+        video_postfix = video_postfix_guess
+
+    item['video_img_local_path'] = [dir + item['platform'][0] + '+' + \
+                                    re.sub('', '', item['url'][0]) + '.' + \
+                                    video_postfix]
 
 
 def update_composed_pk(item):
     # audience_count = [Config.deal_human_readable_numbers(i) for i in item['audience_count']]
-    item['platform_anchor'] = [item['platform'][0] + '+' + item['anchor'][0]]
+    item['platform_anchor'] = [item['platform'][0] + '+' + item['url'][0]]
 
 
 def download_image(item, dir='./images/'):
-    urllib.urlretrieve(item['video_img'][0],
-                       dir + item['platform'][0] + '+' + item['anchor'][0] + '.' + item['video_img'][0].split('.')[-1])
+    urllib.urlretrieve(item['video_img'][0], item['video_img_local_path'][0])
 
 
 def deal_human_readable_numbers(hrn=''):
