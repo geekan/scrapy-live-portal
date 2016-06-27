@@ -16,6 +16,7 @@ import MySQLdb
 from misc.log import *
 from misc.common import *
 from spiders.spider_helper import *
+import os
 
 
 class ImageDownloadPipeline(object):
@@ -26,6 +27,9 @@ class ImageDownloadPipeline(object):
     # process big item as default.
     def process_item(self, item, spider):
         info('## image pipeline')
+
+        if not os.path.exists('./images'):
+            os.makedirs('./images')
 
         oi = OrderedDict(item)
         process_items_from_list(item, update_item_video_img_local_path)
