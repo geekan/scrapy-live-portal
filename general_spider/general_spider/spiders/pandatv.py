@@ -37,6 +37,6 @@ class Config:
 
         # process_items_from_list(oi, Config.update_audience_count)
         process_items_from_list(oi, update_composed_pk)
-        process_items_from_list(oi, download_image)
+        # process_items_from_list(oi, download_image)
 
         return oi

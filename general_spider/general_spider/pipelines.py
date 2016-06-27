@@ -15,6 +15,23 @@ from collections import OrderedDict
 import MySQLdb
 from misc.log import *
 from misc.common import *
+from spiders.spider_helper import *
+
+
+class ImageDownloadPipeline(object):
+
+    def __init__(self):
+        pass # mkdir
+
+    # process big item as default.
+    def process_item(self, item, spider):
+        info('## txt pipeline 1')
+        oi = OrderedDict(item)
+        process_items_from_list(oi, download_image)
+        return oi
+
+    def close_spider(self, spider):
+        pass
 
 
 class TXTWithEncodingPipeline(object):
