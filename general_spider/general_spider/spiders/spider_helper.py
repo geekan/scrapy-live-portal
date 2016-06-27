@@ -8,13 +8,13 @@ m = hashlib.md5()
 
 def update_item_video_img_local_path(item, dir='./images/'):
 
-    video_postfix = '.jpg'
+    video_postfix = 'jpg'
     video_postfix_guess = re.sub('\?.*', '', item['video_img'][0].split('.')[-1])
-    if re.match('\..*', video_postfix_guess):
+    if video_postfix_guess != '':
         video_postfix = video_postfix_guess
 
     item['video_img_local_path'] = [dir + item['platform'][0] + '+' + \
-                                    re.sub('', '', item['url'][0]) + '.' + \
+                                    re.sub('/', ':', item['url'][0]) + '.' + \
                                     video_postfix]
 
 
