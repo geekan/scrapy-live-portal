@@ -2,18 +2,19 @@
 
 import urllib
 import re
+import os
 import hashlib
 m = hashlib.md5()
 
 
-def update_item_video_img_local_path(item, dir='./images/'):
+def update_item_video_img_local_path(item, dir='/images/'):
 
     video_postfix = 'jpg'
     video_postfix_guess = re.sub('\?.*', '', item['video_img'][0].split('.')[-1])
     if video_postfix_guess != '' and len(video_postfix_guess) < 5:
         video_postfix = video_postfix_guess
 
-    item['video_img_local_path'] = [dir + item['platform'][0] + '+' + \
+    item['video_img_local_path'] = [os.getcwd() + dir + item['platform'][0] + '+' + \
                                     re.sub('/', ':', item['url'][0]) + '.' + \
                                     video_postfix]
 
