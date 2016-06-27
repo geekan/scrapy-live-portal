@@ -12,7 +12,7 @@ class Config:
 
     list_css_rules = { 
         '.video-list .video-list-item': {
-            'room_name': '#js-video-all .clickstat::text',
+            'room_name': 'a.clickstat::text',
             'anchor': '.nick::text',
             'audience_count': '.js-num::text',
             'tag': '.fr a::text',
