@@ -132,7 +132,7 @@ class MySQLWithEncodingPipeline(object):
                               'video_img_local_path']
             cols = ['platform_anchor'] + cols_to_update
             sql_values = ','.join([
-                                    '(' + ','.join(['\''+item[i]+'\'' for i in cols]) + ')'
+                                    '(' + ','.join(['\''+item[i].replace('\'', '\\\'')+'\'' for i in cols]) + ')'
                                     for item in items
                                 ])
 
