@@ -14,10 +14,12 @@ def update_item_video_img_local_path(item, dir='/images/'):
     if video_postfix_guess != '' and len(video_postfix_guess) < 5:
         video_postfix = video_postfix_guess
 
-    item['video_img_local_path'] = [dir + item['platform'][0] + '+' + \
+    # /static/images/video_snapshots
+    item['video_img_local_path'] = [item['platform'][0] + '+' + \
                                     re.sub('/', ':', item['url'][0]) + '.' + \
                                     video_postfix]
 
+    # image storage path.
     item['video_img_local_fullpath'] = [os.getcwd() + dir + item['platform'][0] + '+' + \
                                     re.sub('/', ':', item['url'][0]) + '.' + \
                                     video_postfix]
@@ -29,7 +31,12 @@ def update_composed_pk(item):
 
 
 def download_image(item, dir='./images/'):
-    urllib.urlretrieve(item['video_img'][0], item['video_img_local_fullpath'][0])
+
+    try:
+        urllib.urlretrieve(item['video_img'][0], item['video_img_local_fullpath'][0])
+    except Exception as e:
+        print(e)
+        print(item['video_img_local_fullpath'])
 
 
 def deal_human_readable_numbers(hrn=''):
