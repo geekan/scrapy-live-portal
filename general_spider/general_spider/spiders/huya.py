@@ -12,12 +12,12 @@ class Config:
 
     list_css_rules = { 
         '.live-list .game-live-item': {
-            'room_name': 'a.clickstat::text',
+            'room_name': 'a.new-clickstat::text',
             'anchor': '.nick::text',
             'audience_count': '.js-num::text',
             'tag': '.fr a::text',
             'url': 'a.video-info::attr(href)',
-            'video_img': 'img.pic::attr(src)',
+            'video_img': 'img.pic::attr(data-original)',
             'platform': ['huyatv'],
             'platform_prefix_url': ['http://www.huya.com'],
         }   
