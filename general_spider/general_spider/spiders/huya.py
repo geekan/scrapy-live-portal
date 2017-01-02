@@ -12,7 +12,7 @@ class Config:
 
     list_css_rules = { 
         '.live-list .game-live-item': {
-            'room_name': 'a.new-clickstat::text',
+            'room_name': 'a.new-clickstat::attr(title)',
             'anchor': '.nick::text',
             'audience_count': '.js-num::text',
             'tag': '.fr a::text',
