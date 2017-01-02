@@ -11,7 +11,7 @@ from spider_helper import *
 class Config:
 
     list_css_rules = { 
-        '.video-list .video-list-item': {
+        '.live-list .game-live-item': {
             'room_name': 'a.clickstat::text',
             'anchor': '.nick::text',
             'audience_count': '.js-num::text',
